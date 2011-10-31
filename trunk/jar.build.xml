@@ -7,21 +7,10 @@
   <property name="tmp.dir" location="${basedir}/tmp" />
   <property name="tmp.lib.dir" location="${basedir}/tmp-lib" />
   <property name="build.jar.dir" location="${build.dir}/jar" />
-  
-  <!-- Info for robot. robot.author.id must also be the package where the robot is located. -->
-  <property name="robot.author.name" value="Philip Johnson"/>
-  <property name="robot.author.id" value="pmj"/>
-  <property name="robot.name" value="DaCruzer"/>
-  <property name="robot.webpage" value="http://philipmjohnson.blogspot.com/2009/09/DaCruzer.html"/>
-  <property name="robot.description" 
-    value="Moves to all four corners. Fires whenever it sees someone. Thanks to Kimberly Heu."/>
-  <property name="robocode.version" value=" 1.7.2.3"/>
 
   <delete dir="${build.jar.dir}" quiet="true" />
-  
-  
 
-  <target name="jar" depends="compile" description="Create pmj-dacruzer.jar">
+  <target name="jar" depends="compile" description="Create wattdepot-simpleapp.jar">
     <!-- Define the directories and distribution name -->
     <mkdir dir="${tmp.dir}" />
     <mkdir dir="${build.jar.dir}" />
@@ -32,23 +21,17 @@
       <fileset dir="${basedir}/src" />
     </copy>
     
-    <!-- Create the robot properties file. -->
-    <propertyfile file="${tmp.dir}/${robot.author.id}/${robot.name}.properties">
-      <entry key="robot.webpage" value="${robot.webpage}"/>
-      <entry key="robot.description" value="${robot.description}"/>
-      <entry key="robot.version" value="${version}" />
-      <entry key="robot.author.name" value="${robot.author.name}"/>
-      <entry key="robot.classname" value="${robot.author.id}.${robot.name}"/>
-      <entry key="robocode.version" value="${robocode.version}" />
-    </propertyfile>
-    <!-- Echo the contents of the file so that the developer can proof-read for errors. -->
-    <concat>
-      <fileset file="${tmp.dir}/${robot.author.id}/${robot.name}.properties"/>
-    </concat>
-
-    <jar destfile="${build.jar.dir}/${robot.author.id}.${robot.name}_${version}.jar" basedir="${tmp.dir}">
-      <manifest>
-        <attribute name="robots" value="${robot.name}" />
+    <!-- Unjar the cron4j and wattdepot libraries for inclusion in this jar file. -->
+    <unjar dest="${tmp.dir}">
+     <path refid="wattdepot.path" />
+    </unjar>
+    
+    <jar destfile="${build.jar.dir}/wattdepot-simpleapp.jar" basedir="${tmp.dir}">
+     <manifest>
+        <attribute name="Main-Class" value="org.wattdepot.simpleapp.SimpleApplication" />
+        <attribute name="Implementation-Title" value="Simple WattDepot Application" />
+        <attribute name="Implementation-Version" value="${version}" />
+        <attribute name="Implementation-Vendor" value="Collaborative Software Development Laboratory, University of Hawaii" />
       </manifest>
     </jar>
     <delete dir="${tmp.dir}" />
