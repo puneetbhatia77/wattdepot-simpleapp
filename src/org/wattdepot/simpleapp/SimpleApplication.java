@@ -29,7 +29,7 @@ public class SimpleApplication {
       System.out.format("Connected successfully to: %s%n", url);
     }
     else {
-      System.out.format("Could not connect to: %s%n", url);
+      System.out.format("Could not connect to: %s%n", url)
       return;
     }
     // Get the list of sources and print them out.
