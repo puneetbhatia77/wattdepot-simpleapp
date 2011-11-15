@@ -45,7 +45,19 @@ public class TestSimpleApplication {
   @Test
   public void testGetEnergySince() throws Exception {
     SimpleApplication application = new SimpleApplication(testUrl);
-    assertTrue("Testing energy since", application.getDailyEnergy(testSource, testDate) > 0);
+    assertTrue("Testing energy since", application.getEnergySince(testSource, testDate) > 0);
   }
+  
+  /**
+   * Tests the main method by invoking it.  If it does not throw an exception, then we should be OK.
+   * @throws Exception If the testUrl is bad, or the date does not have positive energy.
+   */
+  @Test
+  public void testMain() throws Exception {
+    String[] args = { testUrl }; 
+    SimpleApplication.main(args);
+  }
+  
+  
 
 }
