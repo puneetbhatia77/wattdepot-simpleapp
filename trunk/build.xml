@@ -23,7 +23,7 @@
   <!-- Basic properties for this system. -->
   <property name="system.name" value="wattdepot-simpleapp" />
   <property name="majorVersionNumber" value="1" />
-  <property name="minorVersionNumber" value="0" />
+  <property name="minorVersionNumber" value="1" />
   <tstamp>
     <format property="DAYSTAMP" pattern="yyyy.MM.dd.HH.mm" />
   </tstamp>
