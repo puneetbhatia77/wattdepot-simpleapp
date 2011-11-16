@@ -45,7 +45,9 @@ public class TestSimpleApplication {
   @Test
   public void testGetEnergySince() throws Exception {
     SimpleApplication application = new SimpleApplication(testUrl);
-    assertTrue("Testing energy since", application.getEnergySince(testSource, testDate) > 0);
+    double energySince = application.getEnergySince(testSource, testDate);
+    double dailyEnergy = application.getDailyEnergy(testSource, testDate);
+    assertTrue("Testing energy since", energySince > dailyEnergy);
   }
   
   /**
