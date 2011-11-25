@@ -14,7 +14,7 @@ public class TestSimpleApplication {
   /** The sample source to use for testing. */
   private String testSource = "Ilima-A";
   /** The sample date for testing. */
-  private String testDate = "2011-11-01";
+  private String testDate = "2011-11-23";
 
   /**
    * Tests the getCurrentPower method.  If it returns a positive value, assume OK.
