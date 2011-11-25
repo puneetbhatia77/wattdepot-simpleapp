@@ -54,8 +54,8 @@ public class SimpleApplication {
   public double getCurrentPower (String source) throws Exception {
     SensorData data = client.getLatestSensorData(source);
     long latency = getSensorDataLatency(data);
-    if (latency > 60) {
-      throw new Exception("Sensor Data item has latency over 1 minute.");
+    if (latency > 600) {
+      throw new Exception("Sensor Data item has latency over 10 minutes.");
     }
     return data.getPropertyAsDouble("powerConsumed");
   }
@@ -121,7 +121,7 @@ public class SimpleApplication {
     System.out.format("Current power for %s is %,.2f kilowatts.%n", 
         sourceName, (application.getCurrentPower(sourceName) / 1000));
     
-    String date = "2011-11-01";
+    String date = "2011-11-23";
     System.out.format("Daily energy for source %s on %s is %,.2f kilowatts.%n",
         sourceName, date, (application.getDailyEnergy(sourceName, date) / 1000));
 
